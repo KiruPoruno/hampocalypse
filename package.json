@@ -13,6 +13,7 @@
 		"outputPath": "build"
 	},
 	"dependencies": {
+		"ez-log": "github:keysmash-studios/ez-log",
 		"pkg": "^5.5.2"
 	}
 }

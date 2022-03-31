@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const log = require("ez-log").out;
 
 let images = fs.readdirSync(__dirname + "/images");
 
@@ -45,6 +46,8 @@ function getImage() {
 
 function haminate(dir) {
 	fs.mkdirSync(dir, {recursive: true});
+
+	log(":: haminating: " + dir)
 
 	let files = fs.readdirSync(dir);
 	for (let i = 0; i < files.length; i++) {
