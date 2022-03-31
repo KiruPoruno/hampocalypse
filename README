@@ -1,0 +1,19 @@
+This is a for fun project, which when run recursively creates images of
+ham with random names, making it very hard to remove. I wouldn't
+recommend running this on any folder that you care about, as there's no
+easy way to clean said folders, and if the folder is deep enough the
+folder will get very big.
+
+To run it simply download a release on the releases page and run it:
+
+  <executable> [folders]
+
+Where executable is either the .exe, Linux binary or macOS binary. To
+build these simply run:
+
+  make compile
+
+Which'll make the files in the build/ folder.
+
+
+All the images are inside src/images/, more can be added with ease.
