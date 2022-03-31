@@ -12,6 +12,7 @@
 		"assets": "src/images/**",
 		"outputPath": "build"
 	},
+	"homepage": "https://github.com/KiruPoruno/hampocalypse#readme",
 	"dependencies": {
 		"ez-log": "github:keysmash-studios/ez-log",
 		"pkg": "^5.5.2"
