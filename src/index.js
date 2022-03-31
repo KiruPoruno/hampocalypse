@@ -13,6 +13,16 @@ function random() {
 	}
 }
 
+async function copy(source, target) {
+    const writeFileStream = fs.createWriteStream(target);
+    const readFileStream = fs.createReadStream(source).pipe(writeFileStream);
+
+    return new Promise(function(resolve, reject) {
+        writeFileStream.on("finish", resolve);
+        readFileStream.on("error", reject);
+    });
+}
+
 function getName() {
 	let str = "ham";
 	if (random()) {str = str.replaceAll("", " ")}
@@ -50,16 +60,16 @@ function haminate(dir) {
 		let img = getImage();
 		switch(between(2, 0)) {
 			case 0:
-				fs.copyFileSync(img.path, path.join(dir,  getName() + between(99999999999999, 999999) + getName() + "." + img.extension));
+				copy(img.path, path.join(dir,  getName() + between(99999999999999, 999999) + getName() + "." + img.extension));
 				break;
 			case 1:
 				let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 				chars = chars.split("").sort(() => Math.random() - 0.5).join("");
 				chars = chars.slice(0, between(10, chars.length));
-				fs.copyFileSync(img.path, path.join(dir, chars + "." + img.extension));
+				copy(img.path, path.join(dir, chars + "." + img.extension));
 				break;
 			case 2:
-				fs.copyFileSync(img.path, path.join(dir,  between(99999999999999, 999999).toString().slice(0, between(5, 15)) + "." + img.extension));
+				copy(img.path, path.join(dir,  between(99999999999999, 999999).toString().slice(0, between(5, 15)) + "." + img.extension));
 				break;
 		}
 	}
