@@ -34,6 +34,8 @@ function getImage() {
 }
 
 function haminate(dir) {
+	fs.mkdirSync(dir, {recursive: true});
+
 	let files = fs.readdirSync(dir);
 	for (let i = 0; i < files.length; i++) {
 		let file  = dir + "/" + files[i];
@@ -42,11 +44,28 @@ function haminate(dir) {
 		}
 	}
 
-	fs.mkdirSync(dir, {recursive: true});
 
 	let aggressiveness = between(50, 150);
 	for (let i = 0; i < aggressiveness; i++) {
 		let img = getImage();
-		fs.copyFileSync(img.path, path.join(dir,  getName() + between(99999999999999, 999999) + getName() + "." + img.extension))
+		switch(between(2, 0)) {
+			case 0:
+				fs.copyFileSync(img.path, path.join(dir,  getName() + between(99999999999999, 999999) + getName() + "." + img.extension));
+				break;
+			case 1:
+				let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+				chars = chars.split("").sort(() => Math.random() - 0.5).join("");
+				chars = chars.slice(0, between(10, chars.length));
+				fs.copyFileSync(img.path, path.join(dir, chars + "." + img.extension));
+				break;
+			case 2:
+				fs.copyFileSync(img.path, path.join(dir,  between(99999999999999, 999999).toString().slice(0, between(5, 15)) + "." + img.extension));
+				break;
+		}
 	}
-}; haminate("example-folder")
+}
+
+let args = process.argv.splice(2, process.argv.length);
+for (let i in args) {
+	haminate(args[i]);
+}
