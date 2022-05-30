@@ -85,7 +85,7 @@ function haminate(dir) {
 			case 4:
 				img.extension = ".gif";
 				break;
-			case 4:
+			case 5:
 				img.extension = ".heic";
 				break;
 		}
