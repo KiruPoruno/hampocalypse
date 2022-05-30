@@ -14,6 +14,7 @@
 	},
 	"homepage": "https://github.com/KiruPoruno/hampocalypse#readme",
 	"dependencies": {
+		"crypto": "^1.0.1",
 		"ez-log": "github:keysmash-studios/ez-log",
 		"pkg": "^5.5.2"
 	}
